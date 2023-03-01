@@ -1,0 +1,69 @@
+package asg1;
+
+import java.util.Scanner;
+
+public class MadLib {
+	public static void main (String[]args) {
+	Scanner userinput = new Scanner(System.in);
+	 //prompt user to enter a place
+	System.out.print("Enter a place: "); 
+	String YourPlace = userinput.nextLine();
+	
+	//prompt user to enter a name
+	System.out.print("Enter a name: ");
+	String YourName = userinput.nextLine();
+	
+	//prompt user to enter an adjective
+	System.out.print("Enter adjective to describe the experience: ");
+	String YourAdj = userinput.nextLine();
+	
+	//prompt user to enter a noun
+	System.out.print("Enter noun: ");
+	String Yournoun = userinput.nextLine();
+	
+	//prompt user to enter a noun
+	System.out.print("Enter noun: ");
+	String Yournewnoun = userinput.nextLine();
+	
+	//prompt user to enter an adjective
+	System.out.print("Enter adjective: ");
+	String YournewAdj = userinput.nextLine();
+	
+	//prompt user to enter an adjective
+	System.out.print("Enter adjective: ");
+	String YourotherAdj = userinput.nextLine();
+	
+	//prompt user to enter a noun
+	System.out.print("Enter noun: ");
+	String Yourothernoun = userinput.nextLine();
+	
+	//prompt user to enter a number of hours
+	System.out.print("Enter number of hours: ");
+	int Yournumber = userinput.nextInt();
+	userinput.nextLine();
+	
+	//prompt user to enter a noun
+	System.out.print("Enter noun: ");
+	String Youradditionalnoun = userinput.nextLine();
+	
+	//prompt user to enter a food
+	System.out.print("Enter food: ");
+	String YourFood = userinput.nextLine();
+	
+	//prompt user to enter a verb
+	System.out.print("Enter verb: ");
+	String Yourverb = userinput.nextLine();
+	 
+	//formatted output statement 
+	
+	System.out.println("I went to the beach in " + YourPlace + " today with " + YourName + "." + '\n' + " We had a " + YourAdj + " time. We first built a " 
+			+ Yournoun +'\n' 
+			+ "  and then we ran around in the " + Yournewnoun + " for a little while." + '\n' 
+			+ " The water was a bit " + YournewAdj + ". The sun was very " + YourotherAdj + '\n'
+			+ " so we made sure to wear a lot of " + Yourothernoun + ". We spent " + Yournumber + '\n'
+			+ " hours there. At the end of the day, we treated ourselves to " + '\n'
+			+ "a " + Youradditionalnoun + " and had " + YourFood + " for dinner. I definitely want to go " + '\n'
+			+ "to the beach again but next time I want to " + Yourverb + ".");
+	
+	}
+}
