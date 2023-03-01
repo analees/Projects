@@ -1,0 +1,57 @@
+public class Math {
+	
+	public static void main(String[] a) {
+		
+		Math calc = new Math();
+		calc.setVar1();
+		calc.setVar2();
+		System.out.printf("The result of %.4f + %.4f is %.4f", calc.getVar1(), calc.getVar2(), calc.getAdd());
+		System.out.printf("\nThe result of %.4f - %.4f is %.4f", calc.getVar1(), calc.getVar2(), calc.getSubtract());
+		System.out.printf("\nThe result of %.4f * %.4f is %.4f", calc.getVar1(), calc.getVar2(), calc.getMultiply());
+		System.out.printf("\nThe result of %.4f / %.4f is %.4f", calc.getVar1(), calc.getVar2(), calc.getDivide());
+		System.out.printf("\nThe remainder of %.4f / %.4f is %.4f", calc.getVar1(), calc.getVar2(), calc.getModu());
+		
+	}
+	private double var1 = 0; // An instance variable named var1 of type double, initialized to 0
+	private double var2= 0; // An instance variable named var2 of type double, initialized to 0
+	
+	public void setVar1(double var1) {
+		this.var1 = var1; // mutator method that store the value for var1 
+	}
+	
+	public void setVar2(double var2) {
+		this.var2 = var2; // mutator method that store the value for var2
+	}
+	
+	public double getVar1(){
+		return var1; //accessor methods that return the var1
+	}
+	public double getVar2(){
+		return var2; //accessor methods that return the var2
+	}
+	
+	public double getAdd() {
+		return this.var1 + this.var2; //a method named getAdd that returns the value of sum var1 and var2
+	
+	}
+	public double getSubtract() {
+		return this.var1 - this.var2; //a method named getSubtract that returns the value of the subtraction of the var2 from the var1
+	
+	}
+	
+	public double getMultiply() {
+		return this.var1 * this.var2; //a method named getMultiply that returns the value of product of var1 and var2.
+	
+	}
+	
+	public double getDivide() {
+		return this.var1 / this.var2;//a method named getDivide that returns the value of the division of the var1 by var2.
+	
+	}
+	
+	public double getModu() {
+		return this.var1 % this.var2;//a method named getModu that returns the value of the modulus of the var1 by var2
+	
+	}
+	
+}
