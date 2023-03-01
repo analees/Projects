@@ -1,0 +1,141 @@
+package asg2sp23;
+
+public class Employee {
+	
+//main method 
+	
+	public static void main(String[] a) {
+		//three employee objects (emplpoy1, employ2 and employ 3) which creates 3 new instances for the Employee class 
+		Employee employ1 = new Employee();
+		Employee employ2 = new Employee();
+		Employee employ3 = new Employee();
+		Employee employ4 = new Employee();
+		Employee employ5 = new Employee();
+		
+		 //stores the data for employ1
+		
+		employ1.setfname("Cherianne");
+		employ1.setlname("Newey");
+		employ1.setempID(419553081);
+		employ1.setdpt("Marketing");
+		employ1.setfunc("Senior Developer");
+		employ1.setempEmail("cnewey0@company.com");
+		
+		// prints the data for employ1 in required format
+		
+		System.out.println(employ1.getlname()+ ", " + employ1.getfname() + ", " + employ1.getempID() + ", works as a " + employ1.getfunc() + " in "+ employ1.getdpt() + " and has the following email address: " +
+		employ1.getempEmail()+ ".");
+		
+		//stores the data for employ2
+		
+		employ2.setfname("Benita");
+		employ2.setlname("Jurkowski");
+		employ2.setempID(94420925);
+		employ2.setdpt("Sales");
+		employ2.setfunc("GIS Technical Architect");
+		employ2.setempEmail("bjurkowski1@company.com");
+		
+		// prints the data for employ2 in required format
+		
+		System.out.println(employ2.getlname()+ ", " + employ2.getfname() + ", " + employ2.getempID() + ", works as a " + employ2.getfunc() + " in "+ employ2.getdpt() + " and has the following email address: " +
+				employ2.getempEmail() + ".");
+		
+		//stores the data for employ3
+		
+		employ3.setfname("Jodi");
+		employ3.setlname("Hearns");
+		employ3.setempID(98903489);
+		employ3.setdpt("Sales");
+		employ3.setfunc("Sales Representative");
+		employ3.setempEmail("jhearns2@company.com");
+		
+		// prints the data for employ3 in required format
+		
+		System.out.println(employ3.getlname()+ ", " + employ3.getfname() + ", " + employ3.getempID() + ", works as a " + employ3.getfunc() + " in "+ employ3.getdpt() + " and has the following email address: " +
+				employ3.getempEmail()+ "."); 
+		
+		 //MY OWN DATA 
+		employ4.setfname("Maharaj");
+		employ4.setlname("Analee");
+		employ4.setempID(12345678);
+		employ4.setdpt("Engineering");
+		employ4.setfunc("Software Engineer");
+		employ4.setempEmail("awesomeanalee@awesomejob.com");
+		
+		// prints the data for employ3 in required format
+		
+		System.out.println(employ4.getlname()+ ", " + employ4.getfname() + ", " + employ4.getempID() + ", works as a " + employ4.getfunc() + " in "+ employ4.getdpt() + " and has the following email address: " +
+				employ4.getempEmail()+ ".");
+		
+		employ5.setfname("New");
+		employ5.setlname("Celine");
+		employ5.setempID(9876543);
+		employ5.setdpt("Medical");
+		employ5.setfunc("Pharmacist");
+		employ5.setempEmail("celine@awesomejob.com");
+		
+		// prints the data for employ3 in required format
+		
+		System.out.println(employ5.getlname()+ ", " + employ5.getfname() + ", " + employ5.getempID() + ", works as a " + employ5.getfunc() + " in "+ employ5.getdpt() +" and has the following email address: " +
+				employ5.getempEmail()+ ".");
+	}
+	
+	private String fname; //unassigned String variable fname is created
+	private String lname; //unassigned String variable fname is created
+	private int empID; //unassigned String variable empID is created
+	private String dpt; //unassigned String variable dpt is created
+	private String func; //unassigned String variable func is created
+	private String empEmail; //unassigned String variable empEmail is created
+	
+	//mutator methods to store values in the fname,lname,empid,dpt,func,empEmail fields
+	
+	public void setfname(String fname) {
+		this.fname = fname;
+	}
+	
+	public void setlname(String lname) {
+		this.lname = lname;
+	}
+	
+	public void setempID(int empID) {
+		this.empID = empID;
+	}
+	
+	public void setdpt(String dpt) {
+		this.dpt = dpt;
+	}
+	
+	public void setfunc(String func) {
+		this.func = func;
+	}
+	
+	public void setempEmail(String empEmail) {
+		this.empEmail = empEmail;
+	}
+	
+
+	//accessor methods to return the values in the fname,lname,empid,dpt,func,empEmail fields 
+	
+	public String getfname() {
+		return fname;
+	}
+	
+	public String getlname() {
+		return lname;
+	}
+	
+	public int getempID() {
+		return empID;
+	}
+	public String getdpt() {
+		return dpt;
+	}
+	
+	public String getfunc() {
+		return func;
+	}
+	
+	public String getempEmail() {
+		return empEmail;
+	}
+}
