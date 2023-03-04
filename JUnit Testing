@@ -1,0 +1,269 @@
+//TV class with power, volume and channels as private fields
+
+public class TV {
+	private boolean power;
+	private int volume;
+	private int channels;
+	
+	//constructor of TV class 
+	public TV(boolean power,int volume, int channels) {
+		this.power = power;
+		this.volume = volume;
+		this.channels = channels;
+	}
+	
+	//setter and getter methods for each field
+	
+	public void setPower(boolean power) {
+		this.power = power;
+	}
+	
+	public boolean getPower() {
+		return power;
+	}
+	
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
+	
+	public int getVolume() {
+		return volume;
+	}
+	
+	public void setChannels(int channels) {
+		this.channels= channels;
+	}
+	
+	public int getChannels() {
+		return channels;
+	}
+	
+	//method to increase the volume incrementally
+	public void increaseVolume() {
+		
+		//if statement if volume is less than 100 it is incremented
+		
+        if (volume < 100) {
+            volume++;
+        }
+    }
+
+	//if statement if volume is greater than 0 it is decremented
+    public void decreaseVolume() {
+        if (volume > 0) {
+            volume--;
+        }
+		
+	
+	}
+
+	public void setChannels2(int channels) {
+		this.channels= channels;
+		
+	}
+	
+
+
+//TVRemoteControl class
+
+public class TVRemoteControl {
+	//fields for class
+	
+	public static boolean powerOn;
+	private static int volume;
+	private int channels;
+	private static TV tv;
+	
+	//constructor with tv object
+	public TVRemoteControl(TV tv) {
+		//fields for class set to default values
+		TVRemoteControl.powerOn = false;
+		this.volume = 10;
+		this.channels = 3;
+		this.tv =tv;
+		
+	}
+		
+	// powerOn method to change the power status to true
+	public static void powerOn() {
+		 TVRemoteControl.powerOn=true;	
+		 tv.setPower(powerOn);
+		
+	}
+	
+	//powerOff method to change the power status to false
+	
+	public static boolean poweroff() {
+		return TVRemoteControl.powerOn = false;
+	}
+	
+	
+	//method to decrease the volume to a minimum of 0 by calling increase volume method from TV class
+	public  void increaseVolume() {
+		if (tv.getVolume() < 100) {
+            tv.setVolume(tv.getVolume() + 1);
+        }
+			
+	}
+	
+	//method to decrease the volume to a minimum of 0 by calling decrease volume method from TV class
+	public void decreaseVolume() {
+		if (tv.getVolume() > 0) {
+            tv.setVolume(tv.getVolume() - 1);
+		}
+			
+		}
+	//channels span between 0 and 100 
+	
+
+    public void Channel() {
+        if ((tv.getChannels() > 0) && (tv.getChannels() < 100)) {
+        	tv.setChannels(getChannels(channels));
+    }
+        else {
+        	tv.setChannels(channels);
+        }
+        
+		
+		
+		
+	}
+
+	private int getChannels(int channels2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void setChannels(int channels, int i, int j) {
+		this.channels= channels;
+	
+		
+	}
+	
+	public void setChannels2(int channels, int i) {
+		this.channels= channels;
+	
+		
+	}
+	
+	public static void main (String []args) {
+		System.out.println(TVRemoteControl.getChannels());
+	}
+	
+
+	
+		
+}
+//JUnit Testing
+
+package cosc242502asg4sp23Test;
+import cosc242502asg4sp23.TVRemoteControl;
+import cosc242502asg4sp23.TV;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+
+import cosc242502asg4sp23.TVRemoteControl;
+
+
+public class Testing {
+	
+	//JUnit test that will test the powerOn
+	
+	@Test
+	public void testpowerOn() {
+		TV tv = new TV(false, 10, 3);
+		TVRemoteControl remote = new TVRemoteControl(tv);
+		
+		remote.powerOn();
+		
+		Assertions.assertTrue(tv.getPower());
+		
+		}
+	
+	//JUnit test that will test the powerOff
+	@Test
+	public void testpowerOff() {
+		Assertions.assertFalse(TVRemoteControl.poweroff());
+		
+		}
+	
+	//JUnit test that will test if the volume increases 
+	@Test
+    void testincreasevolume() {
+		TV tv = new TV(false, 10, 3);
+		TVRemoteControl remote = new TVRemoteControl(tv);
+		
+		remote.increaseVolume();
+		
+		int expected = 11;
+		int actual = tv.getVolume();
+		
+		Assertions.assertEquals(expected, actual);
+	
+	}
+	
+	
+	//JUnit test that will test if the volume decreases 
+	
+    @Test
+    public void testDecreaseVolume() {
+    	TV tv = new TV(false, 10, 3);
+		TVRemoteControl remote = new TVRemoteControl(tv);
+		
+		remote.decreaseVolume();
+		
+		int expected = 9;
+		int actual = tv.getVolume();
+		
+		Assertions.assertEquals(expected, actual);
+	
+	}
+    
+  //test that the test will pass if the channels are 5,100,35
+    @Test
+    public void testSetChannel() {
+    	TV tv = new TV(false, 10, 3);
+		TVRemoteControl remote = new TVRemoteControl(tv);
+		
+		remote.setChannels(5, 100,  35);
+    
+        tv.setChannels(5);
+        Assertions.assertEquals(5, tv.getChannels());
+
+        tv.setChannels(100);
+        Assertions.assertEquals(100, tv.getChannels());
+
+        tv.setChannels(35);
+        Assertions.assertEquals(35, tv.getChannels());
+    }
+  //test that the test will fail if the channels are -1 & 105   
+    @Test
+    public void testSetChannel2() {
+    	TV tv = new TV(false, 10, 3);
+		TVRemoteControl remote = new TVRemoteControl(tv);
+		
+		remote.setChannels2(-1, 105);
+    //assertion assert to compare the set channel to the 
+        tv.setChannels2(-1);
+        Assertions.assertNotSame(0, tv.getChannels());
+
+        tv.setChannels2(105);
+        Assertions.assertNotSame(100, tv.getChannels());
+
+
+    }
+    
+    
+    
+
+}
+
+
+
+
+}
