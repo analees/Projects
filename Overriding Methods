@@ -1,0 +1,47 @@
+public class Afterarea {
+
+	
+	//static method that returns the formula to calculate the area of a circle
+	public static double area(double radius) {
+		return Math.PI * radius * radius ;
+		
+		
+	}
+	//static method that returns the formula to calculate the area of a rectangles
+	public static double area(double width, int height) {
+			return width * height;
+		}
+	
+	//static method that returns the formula to calculate the area of a cylinder
+	public static double area(double radius, double height ) {
+			return Math.PI * radius * radius * height;
+		}
+	//main method
+	public static void main (String[]args) {
+  
+		//static methods called without creating an instance of the class
+		//calling the area of the circle
+    
+		double circleArea = Afterarea.area(5);
+    
+		//calling the area of the rectangle
+    
+		double rectangleArea = Afterarea.area(5,7);
+    
+		//calling the area of the cylinder
+    
+		double cylinderArea = Afterarea.area(6,9);
+    
+		//formatting the area of the circle to 2 decimal places
+    
+		String formatted = String.format("%.2f", circleArea);
+    
+		//output
+    
+		System.out.println(formatted);
+		System.out.println(rectangleArea);
+		System.out.println(cylinderArea);
+	}
+
+
+}
