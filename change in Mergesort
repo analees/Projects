@@ -1,0 +1,128 @@
+import random
+
+#M is the size of the array that we want the cut off to occur(change manually)
+M=16
+#funtion cuttoff_merge_insertion taking the array and the cutoff size
+def cuttoff_merge_insertion(my_array,M):
+    num_ops = 0
+    #if the length of the array is smaller or equal to M which is the cutoff recursively call insertion sort
+    num_ops +=3
+    if len(my_array)<=M:
+        insertion_sort(my_array)
+        #else split the length of the array in half
+        num_ops +=4
+    else:
+        mid = len(my_array)//2
+        L = my_array[:mid]
+        R= my_array[mid:]
+        num_ops +=2
+        #once each side reaches the cutoff mark recursively call cuttoff_merge_insertion 
+        left= cuttoff_merge_insertion(L,M)
+        right = cuttoff_merge_insertion(R,M)
+        
+        #call merge_sort to combine sides
+        
+        return merge_sort(left,right)
+        return num_ops
+        
+        
+
+def insertion_sort(my_array):
+    # Traverse through 1 to len(my_array)
+    num_ops = 3
+    for i in range(1, len(my_array)):
+        key = my_array[i]
+
+        j = i-1
+        num_ops += 9
+        while j >= 0 and key < my_array[j] :
+                my_array[j + 1] = my_array[j]
+                j -= 1
+                num_ops += 9
+        my_array[j + 1] = key
+        num_ops += 3
+
+    return num_ops
+
+
+def merge_sort(my_array):
+    num_ops = 3
+    if len(my_array) > 1:
+        mid = len(my_array)//2 #Finding the mid of the array
+        L = my_array[:mid] # Dividing the array elements
+        R = my_array[mid:] # into 2 halves
+
+        num_ops += 5 + len(my_array)
+        op1 = merge_sort(L) # Sorting the first half
+        op2 = merge_sort(R) # Sorting the second half
+        num_ops += op1 + op2
+        i = j = k = 0
+        len_L = len(L)
+        len_R = len(R)
+        # Copy data to temp arrays L[] and R[]
+        num_ops += 11
+        while i < len_L and j < len_R:
+            num_ops += 4
+            if L[i] < R[j]:
+                my_array[k] = L[i]
+                i+=1
+                num_ops += 3
+            else:
+                my_array[k] = R[j]
+                j+=1
+                num_ops += 3
+            k+=1
+            num_ops += 5
+
+        # Checking if any element was left
+        num_ops += 2
+        while i < len_L:
+            my_array[k] = L[i]
+            i+=1
+            k+=1
+            num_ops += 6
+
+        num_ops += 2
+        while j < len_R:
+            my_array[k] = R[j]
+            j+=1
+            k+=1
+            num_ops += 6
+    return num_ops
+
+def main():
+
+    print("We will first read data from file, and then call the sorting algorithm!")
+    data_one = []
+    data_two = []
+    data_three = []
+    try:
+        in1 = open("data1.txt")
+        in2 = open("data2.txt")
+        in3 = open("data3.txt")
+        for line in in1:
+            data_one.append(int(line.strip()))
+        for line in in2:
+            data_two.append(int(line.strip()))
+        for line in in3:
+            data_three.append(int(line.strip()))
+        in1.close()
+        in2.close()
+        in3.close()
+    except IOError:
+        print("There was an error reading the files")
+
+    print("Verification of proper data reading:")
+    print(data_one)
+    print(data_two)
+    print(data_three)
+
+    op1 = merge_sort(data_one)
+    print("To sort data_one it took: %d operations" % op1)
+    op2 = merge_sort(data_two)
+    print("To sort data_two it took: %d operations" % op2)
+    op3 = merge_sort(data_three)
+    print("To sort data_three it took: %d operations" % op3)
+
+
+
