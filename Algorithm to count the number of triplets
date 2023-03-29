@@ -31,11 +31,7 @@ def rand_card():
 	suit = ["Clubs", "Hearts", "Diamonds", "Spades"]
 	return Card(random.choice(face), random.choice(suit))
 
-def extra_credit(my_data):
-	print("Place your code below to determine the number of triplets inside the input array.")
-	print("Your code must at minimum find the base set, you do not need to calculate all permutations")
-	print("Although if you find all permutations, there will be additional credit given")
-
+	
 #to sort this algorith we are first going to use merge sort to sort the algorithm alphabetically
 def merge_sort(my_array):
     if len(my_array)>1:
