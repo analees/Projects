@@ -1,0 +1,139 @@
+import random
+
+class Card:
+	def __init__(self, the_face, the_suit):
+		self.face = the_face
+		self.suit = the_suit
+#get suit of card
+	def get_suit(self):
+		return self.suit
+#get face of card
+	def get_face(self):
+		return self.face
+#sets the face and suit of the other card 
+	def __eq__(self, other_card):
+		return (self.face == other_card.get_face()) and (self.suit == other_card.get_suit())
+#compares faces of card
+	def __gt__(self, other_card):
+#return true if face is greater than other card face
+		if self.face > other_card.get_face():
+			return True
+		elif (self.face == other_card.get_face()):
+			return self.suit > other_card.get_suit()
+		else:
+			return False
+
+	def __str__(self):
+		return "%s of %s" % (self.face, self.suit)
+
+def rand_card():
+	face = [2,3,4,5,6,7,8,9,10,11,12,13,14]
+	suit = ["Clubs", "Hearts", "Diamonds", "Spades"]
+	return Card(random.choice(face), random.choice(suit))
+
+def extra_credit(my_data):
+	print("Place your code below to determine the number of triplets inside the input array.")
+	print("Your code must at minimum find the base set, you do not need to calculate all permutations")
+	print("Although if you find all permutations, there will be additional credit given")
+
+#to sort this algorith we are first going to use merge sort to sort the algorithm alphabetically
+def merge_sort(my_array):
+    if len(my_array)>1:
+        mid = len(my_array)//2
+        left_side = my_array[:mid]
+        right_side=my_array[mid:]
+        
+        merge_sort(left_side)
+        merge_sort(right_side)
+        
+        i=j=k=0
+        
+    while i< len(left_side) and j < len(right_side):
+        if left_side[i] < right_side[j]:
+            my_array[k] = left_side[j]
+            i+=1
+        else:
+            j+=1
+        k+=1
+        while i < len(left_side):
+            my_array[k] = left_side[i]
+            i +=1
+            k+=1
+        while j < len(right_side):
+            my_array[k]=right_side[j]
+            j+=1
+            k+=1
+            
+        return k
+
+def triplets(my_data):
+# call merge sort to sort the array
+    merge_sort(my_data)
+
+    # Iterate over every possible combination of three elements in the array
+    count = 0
+    for i in range(len(my_data)):
+        for j in range(i+1, len(my_data)):
+            for k in range(j+1, len(my_data)):
+                # Check if the three elements form a triplet
+                if my_data[i] == my_data[j] == my_data[k]:
+                    count += 1
+
+    return count               
+                
+                
+
+def print_hand(my_hand):
+    for i in range(len(my_hand)):
+        print("Card %d: %s" % (i+1, my_hand[i]))
+
+def main():
+
+    print("This main method will briefly test the card class!")
+    print("It will manually make three cards, print them, and compare them")
+    print("It will then generate 10 random cards and compare them")
+
+    card_one = Card(2, "Clubs")
+    card_two = Card(7, "Spades")
+    card_three = Card(7, "Hearts")
+    card_four = Card(7, "Spades")
+
+    print("The three manually created cards are: %s, %s, and %s" % (card_one, card_two, card_three))
+    print("Card one is equal to card two: %s" % (card_one == card_two))
+    print("Card four is equivalent to Card two. Are they equal: %s" % (card_two == card_four))
+    print("Is %s greater than %s: %s" % (card_one, card_two, card_one > card_two))
+    print("Is %s greater than %s: %s" % (card_two, card_one, card_two > card_one))
+    print("Is %s less than %s: %s" % (card_one, card_three, card_one < card_three))
+    print("Is %s Less than %s: %s" % (card_two, card_three, card_two < card_three))
+    print("Is %s Less than %s: %s" % (card_three, card_two, card_three < card_two))
+
+    print("\n\nNow we will make 10 random cards and compare them all")
+    my_cards = []
+    for i in range(10):
+        my_cards.append(rand_card())
+    print("The cards we have selected are:")
+    result = ""
+    for item in my_cards:
+        result += "%s\t" % item
+    print(result)
+
+    print("We will now do 30 random comparisons")
+    for i in range(30):
+        card_one = random.choice(my_cards)
+        card_two = random.choice(my_cards)
+        print("%s > %s: %s" % (card_one, card_two, card_one > card_two))
+        print("%s < %s: %s" % (card_one, card_two, card_one < card_two))
+        print("%s == %s: %s" % (card_one, card_two, card_one == card_two))
+
+    hand_one = [card_one, card_two, card_three, card_four, Card(7, "Spades"), Card(14, "Hearts")]
+    print("In hand one we have three instances of %s. When we call extra_credit, it should return one." % card_two)
+    hand_two = [card_one, card_two, card_three, card_four, Card(7, "Spades"), Card(14, "Hearts"), card_one, card_one, card_two]
+    print("In hand two we have four instances of %s and three of %s. Our return value must be at least two, preferably three (or more if you count all possible permutations)" % (card_two, card_one))
+    hand_three = []
+    for i in range(1000):
+      hand_three.append(rand_card())
+    print_hand(hand_three)
+
+
+
+main()
