@@ -1,0 +1,434 @@
+package asg6sp23;
+
+import java.util.Random;
+
+public class Character {
+	 Random rand = new Random();
+
+//fields for holding a character's name (string), health (int), and mana (int)
+	private String name;
+	protected int health;
+	private int mana;
+//constructor that initializes all of the values	
+	public Character(String name, int health, int mana) {
+		this.name = name;
+		this.health=health;
+		this.mana = mana;
+	}
+//mutator and accessor methods for every field
+	public void setname(String name) {
+		this.name = name;
+	}
+	
+	public String getname() {
+		return name;
+	}
+	
+	public void sethealth(int warrior) {
+		this.health = warrior;
+	}
+	public int gethealth() {
+		return health;
+	}
+	public void setmana(int mana) {
+		this.mana= mana;
+	}
+	public int getmana() {
+		return mana;
+	}
+//    create a generic attack method that will accept a Character parameter target
+	public void attack(Character target) {
+		int damage= rand.nextInt(10);
+		int newhealth = health - damage;
+		
+		if (newhealth< 0) {
+		System.out.println(target.getname() + " You totally lost!");
+		}
+		
+		else {	
+ 		System.out.println(target.getname() + " Your new health is: " + newhealth 
+ 				+ "WHAT ARE YOU DOING YOU'RE SUFFERENING SERIOUS DAMAGE!: " + damage);
+	}
+		
+	}
+//an appropriate toString method with a nice message that will display the character's information	
+	public String toString() {
+		return ("Your Character is: " + name + " current health: "+ health + 
+				" mana level: "+ mana);
+	}
+	
+
+
+}
+
+
+package asg6sp23;
+//Create a new class, Druid which inherits from the Warrior and implements WarriorAttack.
+public class Druid extends Warrior implements WarriorAttack {
+
+//The Druid class should have an int field for wisdom.
+	private int wisdom;
+	
+//constructor that initializes wisdom variable, as well as, inheriting the constructor(s) for Character and Warrior.
+	public Druid(String name, int health, int mana, int strength, int wisdom) {
+		super(name, health, mana, strength);
+		this.wisdom = wisdom;
+	}
+	
+//  mutator and accessor methods for appropriate fields for this class
+	public void setWisdom(int wisdom) {
+		this.wisdom=wisdom;
+	}
+	public int  getWisdom() {
+		return wisdom;
+	}
+//create a Druid specific Heal method that will accept a Character parameter target
+	public void heal(Character target) {
+		System.out.println("You have been healed: ");
+	}
+// The Druid will also have the WarriorAttack methods
+	public void swordAttack(Character target) {
+		System.out.println("Druid attacks warrior!");
+	}
+	
+// an appropriate toString method with a nice message that will display all of the character's information 
+	@Override
+	public String toString() {
+		return ("This is the wisdom: " + wisdom);
+	}
+
+
+
+
+}
+
+
+package asg6sp23;
+
+//Create a new class, Mage which inherits from the Character class.
+public class Mage extends Character {
+	
+// The Mage class should have an int field for intelligence.
+	private int intelligence;
+	
+// constructor that initializes intelligence variable, as well as, inheriting the character constructor.
+	public Mage(String name, int health, int mana, int intelligence) {
+		super(name, health, mana);
+		this.intelligence=intelligence;
+	}
+// mutator and accessor methods for appropriate fields for this class
+
+	public void setintelligence(int intelligence) {
+		this.intelligence= intelligence;
+	}
+	public int getintelligence() {
+		return intelligence;
+	}
+ 
+// create a mage specific fireballSpell method that will accept a Character parameter target
+	public void fireballSpell(Character target) {
+		System.out.println("Fireball was faaaast!");
+	}
+// an appropriate toString method with a nice message that will display all of the character's information  
+@Override
+	public String toString() {
+		return ("This is the intelligence: " + intelligence);
+	}
+    
+
+}
+
+
+package asg6sp23;
+
+interface MageAttack {
+	public void fireballSpell(Character target);
+
+}
+// Assignment-6 – COSC 2425-01 – Professor McCurry
+
+//  Implemented by - Analee Maharaj
+
+package asg6sp23;
+
+public class Warrior extends Character {
+//The Warrior class should have an int field for strength.
+	private int strength;
+//constructor that initializes the strength variable, as well as, inheriting the character constructor.	
+	public Warrior(String name, int health, int mana, int strength) {
+		super(name, health, mana);
+		this.strength= strength;
+	}
+//mutator and accessor methods for appropriate fields for this class
+	public void setstrength(int strength) {
+		this.strength = strength;
+	}
+	public int getstrength() {
+		return strength;
+	}
+	
+//create a warrior specific swordAttack method that will accept a Character parameter target
+	public void swordAttack(Character target) {
+		System.out.println("Stabbed in the leg twice!");
+	}
+//an appropriate toString method with a nice message that will display all of the character's information 
+	@Override
+	public String toString() {
+		return ("You have been attacked: " + strength);
+	}
+
+}
+
+// Assignment-6 – COSC 2425-01 – Professor McCurry
+
+//  Implemented by - Analee Maharaj
+
+package asg6sp23;
+
+interface WarriorAttack {
+	public void swordAttack(Character target);
+
+}
+
+package asg6sp23Test;
+
+import java.util.Random;
+
+public class Goblin {
+
+	private String name;
+    private int health;
+    private int mana;
+
+    public Goblin(String name) {
+        this.name = name;
+        Random rand = new Random();
+        this.health = rand.nextInt(40) + 1;
+        this.mana = rand.nextInt(35) + 1;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    
+    public int getMana() {
+        return this.mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+
+}
+
+package asg6sp23Test;
+
+import java.util.Random;
+
+public class Skeleton {
+
+	private String name;
+    private int health;
+    private int mana;
+
+    public Skeleton(String name) {
+        this.name = name;
+        Random rand = new Random();
+        this.health = rand.nextInt(25) + 1;
+        this.mana = rand.nextInt(5) + 1;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    
+    public int getMana() {
+        return this.mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+
+}
+
+package asg6sp23Test;
+
+import java.util.Random;
+
+public class Skeleton {
+
+	private String name;
+    private int health;
+    private int mana;
+
+    public Skeleton(String name) {
+        this.name = name;
+        Random rand = new Random();
+        this.health = rand.nextInt(25) + 1;
+        this.mana = rand.nextInt(5) + 1;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    
+    public int getMana() {
+        return this.mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+
+}
+
+package asg6sp23Test;
+
+import java.util.Random;
+
+public class Zombie  {
+	    private String name;
+	    private int health;
+	    private int mana;
+	
+	    public Zombie(String name) {
+	        this.name = name;
+	        Random rand = new Random();
+	        this.health = rand.nextInt(30) + 1;
+	        this.mana = rand.nextInt(10) + 1;
+	    }
+	
+	    public String getName() {
+	        return this.name;
+	    }
+	
+	    public int getHealth() {
+	        return this.health;
+	    }
+	
+	    public void setHealth(int health) {
+	        this.health = health;
+	    }
+	
+	    public int getMana() {
+	        return this.mana;
+	    }
+	
+	    public void setMana(int mana) {
+	        this.mana = mana;
+	    }
+
+
+}
+
+package asg6sp23Test;
+
+import java.util.Random;
+
+import asg6sp23.Druid;
+import asg6sp23.Mage;
+import asg6sp23.Warrior;
+import asg6sp23.Character;
+
+public class GameDriver {
+
+	public static void main(String[]args) {
+		
+//Warriors can have a maximum health of 100, mana of 50, and strength of 75
+		 Random rand = new Random();
+		 int warriorHealth = rand.nextInt(100)+1; // max health of 100
+	        int warriorMana = rand.nextInt(50)+1; // max mana of 50
+	        int warriorStrength = rand.nextInt(75)+1; // max strength of 75
+	        String warriorName = "Sarita"; // You can choose any name you like
+	        Warrior warrior = new Warrior(warriorName, warriorHealth, warriorMana, warriorStrength);
+			
+//Mages can have a maximum health of 50, mana of 100, and intelligence of 75
+	        int mageHealth = rand.nextInt(50)+1; // max health of 50
+	        int mageMana = rand.nextInt(100)+1; // max mana of 100
+	        int mageIntelligence = rand.nextInt(75)+1; // max intelligence of 75
+	        String mageName = "Selena"; // You can choose any name you like
+	        Mage mage = new Mage(mageName, mageHealth, mageMana, mageIntelligence);
+
+//Druids can have a maximum health of 75, mana of 50, strength of 50 and wisdom of 50
+	        int druidHealth = rand.nextInt(75)+1; // max health of 75
+	        int druidMana = rand.nextInt(50)+1; // max mana of 50
+	        int druidStrength = rand.nextInt(50)+1; // max strength of 50
+	        int druidWisdom = rand.nextInt(50)+1; // max wisdom of 50
+	        String druidName = "Nan"; // You can choose any name you like
+	        Druid druid = new Druid(druidName, druidHealth, druidMana, druidStrength, druidWisdom);
+			
+
+//		        * Skeleton can have a maximum health of 25 and mana of 5
+//		        * Zombies can have a maximum health of 30 and mana of 10
+//		        * Goblins can have a maximum health of 40 and mana of 35
+	        
+	        int skeletonHealth = rand.nextInt(25)+1; // max health of 25
+	        int skeletonMana = rand.nextInt(5)+1; // max mana of 5
+	        Character skeleton = new Character ("Skeleton", skeletonHealth, skeletonMana);
+
+	        // Create a Zombie
+	        int zombieHealth = rand.nextInt(30)+1; // max health of 30
+	        int zombieMana = rand.nextInt(10)+1; // max mana of 10
+	        Character zombie = new Character ("Zombie", zombieHealth, zombieMana);
+
+	        // Create a Goblin
+	        int goblinHealth = rand.nextInt(40)+1; // max health of 40
+	        int goblinMana = rand.nextInt(35)+ 1; // max mana of 35
+	        Character goblin = new Character ("Goblin", goblinHealth, goblinMana);
+	        
+	        
+//Warrior attack the Skeleton with the WarriorAttack
+	        warrior.swordAttack(skeleton);
+	        
+//Mage attack the Zombie with the MageAttack
+	        mage.fireballSpell(zombie);
+	        
+//Goblin attack the Warrior with the Attack
+	        goblin.attack(warrior);
+	        
+//Druid heal the Warrior with the Heal
+	        druid.heal(warrior);
+	        
+//Druid attack the Goblin with the WarriorAttack
+	        druid.swordAttack(goblin);
+	        //calling toString methods
+	        System.out.println(skeleton.toString());
+	        System.out.println(zombie.toString());
+	        System.out.println(goblin.toString());
+	        System.out.println(warrior.toString());
+	        System.out.println(mage.toString());
+	        System.out.println(druid.toString());
+	        
+	        
+	        
+	}
+		
+}
