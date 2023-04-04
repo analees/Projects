@@ -1,0 +1,93 @@
+package cosc2425lab9sp23Test;
+
+import java.util.Scanner;
+
+//Driver class inherits Calculator
+public class CalcDriver extends Calculator {
+	private Double x;
+	private Double y;
+	private Scanner scanner;
+
+//constructor for driver class
+	public CalcDriver() {
+		x = null;
+		y=null;
+		scanner = new Scanner(System.in);        
+	}
+	
+	public double divide(double x, double y) throws ArithmeticException {
+		if(y==0) {
+			throw new ArithmeticException();
+	
+		}
+		return x/y;
+	}
+	
+	public void execution() {
+		while (true) {
+			try {
+				if (x == null) {
+					System.out.println("Enter the first number");
+					x = Double.parseDouble(scanner.nextLine());
+				}
+				if (y == null) {
+					System.out.println("Enter the second number");
+					y = Double.parseDouble(scanner.nextLine());
+				}
+				//menu option
+				System.out.println("\nSelect an option:");
+		        System.out.println("Enter 1 to perform addition.");
+		        System.out.println("Enter 2 to perform subtraction.");
+		        System.out.println("Enter 3 to perform multiplication.");
+		        System.out.println("Enter 4 to perform division.");
+		        System.out.println("Enter 5 to exit program.");
+		        System.out.print("Your choice: ");
+		        int choice = scanner.nextInt();
+		        
+		        if (choice < 1 || choice > 5) {
+			        throw new IllegalArgumentException();
+			        }
+		       //switch case for menu option calling methods from calculator class
+				switch (choice) {
+				case 1:
+		            System.out.print(Calculator.add(x,y));
+		            break;
+		        case 2:
+		            System.out.print(cosc2425lab9sp23.Calculator.subtract(x,y));
+		            break;
+		        case 3:
+
+		            System.out.print(Calculator.multiply(x,y));
+		            break;
+		        case 4:
+		            System.out.print(Calculator.divide(x,y));
+		            break;
+		        case 5:
+			        System.out.println("Exiting program...");
+			        return;
+				
+				}
+			        
+			}		        
+			//catch for each exception
+			catch(NumberFormatException e) {
+				System.out.println("I am giving you serious side eye for not entering a valid number. bruh! ");
+			}
+			catch(ArithmeticException e) {
+				System.out.println("Bro you can't divide by 0. Divide by zero is an error");
+			}
+			catch(IllegalArgumentException e) {
+				System.out.println("Enter a value in the menu.");
+			}
+
+		}
+	}
+
+		
+	public static void main(String[] args) {
+			CalcDriver calc= new CalcDriver();
+			calc.execution();
+		}
+	}
+
+
